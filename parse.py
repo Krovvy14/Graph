@@ -3,7 +3,7 @@ import os
 import sys
 from igraph import *
 
-file = '/home/batman/Documents/MastersProject/packetCapture.txt'
+file = '/path/to/packetCapture.txt'
 line_parser = re.compile(r'(\d*\.\d*.\d*.\d*)(\.\d*) > (\d*\.\d*.\d*.\d*)(\.\d*)')
 
 def parse_line(line):
