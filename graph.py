@@ -2,7 +2,7 @@ from igraph import *
 import os
 import sys
 
-file = '/home/batman/Documents/MastersProject/packetCapture.txt'
+file = '/path/to/packetCapture.txt'
 """
 def file_len(file):
     len=0
