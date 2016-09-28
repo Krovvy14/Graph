@@ -4,8 +4,7 @@ import graph_builder
 import tshark
 import time
 
-#source file. hard coded at the moment will change to cmd line arg later
-#testfile = '/home/batman/Documents/MastersProject/Graph/test.pcap'	
+#source file. hard coded at the moment will change to cmd line arg later	
 testfile = sys.argv[1]
 
 def main():
