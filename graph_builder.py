@@ -2,9 +2,12 @@ import sys
 from collections import defaultdict
 from igraph import *
 import parser
+import os
 
 
-def build_graph(data):
+def build_graph(data, outfile):
+    if not os.path.exists('/tmp/network_graph'):
+        os.mkdir("/tmp/network_graph")
     node_index = 0  # index value use for creating nodes
     edge_index = 0  # index value used for creating edges
 
@@ -16,20 +19,26 @@ def build_graph(data):
     # vertices only parses the first 2 keys.
     # **Should probably clean this up**
     for ip in data['src_ip']:
-        if not ip in g.vs['ip']:
-            g.add_vertex()
-            g.vs[node_index]['ip'] = ip
-            node_index += 1
-        else:
-            continue
+        try:
+            if not ip in g.vs['ip']:
+                g.add_vertex()
+                g.vs[node_index]['ip'] = ip
+                node_index += 1
+            else:
+                continue
+        except KeyError:
+            pass
 
     for ip in data['dest_ip']:
-        if not ip in g.vs['ip']:
-            g.add_vertex()
-            g.vs[node_index]['ip'] = ip
-            node_index += 1
-        else:
-            continue
+        try:
+            if not ip in g.vs['ip']:
+                g.add_vertex()
+                g.vs[node_index]['ip'] = ip
+                node_index += 1
+            else:
+                continue
+        except KeyError:
+            pass
 
     src = data['src_ip']
     dest = data['dest_ip']
@@ -48,12 +57,13 @@ def build_graph(data):
     # graph visual style information
     color_dict = {
         "TCP": "blue",
-        "TLSv1.2": "green",
-        "DNS": "yellow",
-        "NTP": "deep pink",
-        "HTTP": "dark orange",
-        "ARP": "goldenrod",
-        "SSL": "slate gray",
+        "ICMP": "green",
+        "IGMP": "yellow",
+        "IPv4": "deep pink",
+        "IPv6": "dark orange",
+        "RDP": "goldenrod",
+        "UDP": "red",
+        "NONE": "grey"
     }
 
     layout = g.layout("fr")
@@ -61,4 +71,4 @@ def build_graph(data):
     g.vs['label'] = g.vs['ip']
     g.vs['label_dist'] = 1
     g.vs['label_size'] = 10
-    plot(g, "fr_graph_output.pdf", layout=layout, margin=50)
+    plot(g, os.path.join('/tmp/network_graph', "%s.png" % outfile), layout=layout, margin=50)
