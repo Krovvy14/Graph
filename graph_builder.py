@@ -10,7 +10,6 @@ def build_graph(data, outfile):
         os.mkdir("/tmp/network_graph")
     node_index = 0  # index value use for creating nodes
     edge_index = 0  # index value used for creating edges
-
     g = Graph()  # create new graph object
     g.vs['ip'] = []  # define the node attribute
     g.es['protocol'] = []  # define the edge attribute defining protocol of comms
@@ -26,7 +25,7 @@ def build_graph(data, outfile):
                 node_index += 1
             else:
                 continue
-        except KeyError:
+        except Exception:
             pass
 
     for ip in data['dest_ip']:
@@ -37,7 +36,7 @@ def build_graph(data, outfile):
                 node_index += 1
             else:
                 continue
-        except KeyError:
+        except Exception:
             pass
 
     src = data['src_ip']

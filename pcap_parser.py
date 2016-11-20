@@ -45,20 +45,19 @@ def complete_view(testfile):
     #this dict is used to build the graph
     else:
         p = rdpcap(testfile)
+        team_ips = good_ip()
         for pkt in p:
-            try:
-                src_ip = pkt[IP].src
-                dest_ip = pkt[IP].dst
-                protocol = pkt[IP].proto
-                #result['src_ip'].append(src_ip)
-                #result['dest_ip'].append(dest_ip)
-                #result['protocol'].append(protocol_replace(protocol))
-                result.setdefault('src_ip', []).append(src_ip)
-                result.setdefault('dest_ip', []).append(dest_ip)
-                result.setdefault('protocol', []).append(protocol_replace(protocol))
-            except IndexError:
-                print pkt.show()
-    #print result
+                try:
+                    if pkt[IP].src in team_ips:
+                        src_ip = pkt[IP].src
+                        dest_ip = pkt[IP].dst
+                        protocol = pkt[IP].proto
+                        print src_ip
+                        result.setdefault('src_ip', []).append(src_ip)
+                        result.setdefault('dest_ip', []).append(dest_ip)
+                        result.setdefault('protocol', []).append(protocol_replace(protocol))
+                except IndexError:
+                    pass
     return result
 
 #any pkt with a data > .75*MTU is likely indicative
@@ -73,12 +72,13 @@ def file_transfer(testfile):
     else:
         p = rdpcap(testfile)
         team_ips = good_ip()
-        sys.stdout = open(os.path.join('/tmp/file_transfer_log', '%s_file_transfer.txt' % testfile[:-5]), 'w+')
+        sys.stdout = open('/tmp/file_transfer_log/%s_file_transfer.txt' % testfile[:-5], 'w+')
         for pkt in p:
             try:
                 if pkt[IP].dst not in team_ips:
                     if int(pkt[IP].len) > 1125:
                         print pkt.show()
+                        print pkt[IP].src
                         result.setdefault('src_ip', []).append(pkt[IP].src)
                         result.setdefault('dest_ip', []).append(pkt[IP].dst)
                         result.setdefault('protocol', []).append(protocol_replace(pkt[IP].proto))
