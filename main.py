@@ -6,6 +6,7 @@ import argparse
 import thread
 import subprocess
 import os
+import glob
 
 def main():
     parser = argparse.ArgumentParser()
@@ -22,8 +23,9 @@ def main():
         graph_builder.build_graph(pcap_parser.complete_view(args.write_file), '%s_complete_view' % args.write_file[:-5])
         graph_builder.build_graph(pcap_parser.file_transfer(args.write_file), '%s_file_transfer' % args.write_file[:-5])
     elif args.read_file:
-        graph_builder.build_graph(pcap_parser.complete_view(args.read_file), '%s_complete_view' % args.read_file[:-5])
-        graph_builder.build_graph(pcap_parser.file_transfer(args.read_file), '%s_file_transfer' % args.read_file[:-5])
+        for pcap_file in glob.glob(os.path.join(args.read_file, '*.pcap')):
+            graph_builder.build_graph(pcap_parser.complete_view(pcap_file), '%s_complete_view' % args.read_file[:-5])
+            graph_builder.build_graph(pcap_parser.file_transfer(pcap_file), '%s_file_transfer' % args.read_file[:-5])
 
 if __name__ == '__main__':
     main()
