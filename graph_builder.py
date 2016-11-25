@@ -65,6 +65,22 @@ def build_graph(data, outfile):
         g.vs['label'] = g.vs['ip']
         g.vs['label_dist'] = 1
         g.vs['label_size'] = 10
-        plot(g, os.path.join('/tmp/network_graph', "%s.png" % outfile), layout=layout, margin=50)
-    except IndexError:
+
+        if "file_transfer" in outfile:
+            if not os.path.exists("/tmp/network_graph/file_transfer_log"):
+                os.mkdir("/tmp/network_graph/file_transfer")
+            plot(g, os.path.join('/tmp/network_graph/file_transfer', "%s.png" % outfile), layout=layout, margin=50)
+        elif "red_team" in outfile:
+            if not os.path.exists("/tmp/network_graph/red_team"):
+                os.mkdir("/tmp/network_graph/red_team")
+            plot(g, os.path.join('/tmp/network_graph/red_team', "%s.png" % outfile), layout=layout, margin=50)
+        elif "scorebot" in outfile:
+            if not os.path.exists("/tmp/network_graph/scorebot"):
+                os.mkdir("/tmp/network_graph/scorebot")
+            plot(g, os.path.join('/tmp/network_graph/scorebot', "%s.png" % outfile), layout=layout, margin=50)
+        else:
+            if not os.path.exists("/tmp/network_graph/complete_view"):
+                os.mkdir("/tmp/network_graph/complete_view")
+            plot(g, os.path.join('/tmp/network_graph/complete_view', "%s.png" % outfile), layout=layout, margin=50)
+    except KeyError:
         pass
