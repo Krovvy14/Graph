@@ -60,12 +60,15 @@ def build_graph(data, outfile):
             "NONE": "gray"
         }
 
+        # create the iGraph layout controls
         layout = g.layout("circle")
         g.es['color'] = [color_dict[protocol] for protocol in g.es['protocol']]
         g.vs['label'] = g.vs['ip']
         g.vs['label_dist'] = 1
         g.vs['label_size'] = 10
 
+        # Each of theses statements places the graph in an appropriate
+        # /tmp/network_graph folder based on the name of the outfile created.
         if "file_transfer" in outfile:
             if not os.path.exists("/tmp/network_graph/file_transfer_log"):
                 os.mkdir("/tmp/network_graph/file_transfer")
