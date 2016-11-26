@@ -8,7 +8,7 @@ import glob
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-w ', '--write ', help="Name of the new PCAP file to"
+    parser.add_argument('-w ', '--write ', help="Absolute path of the new PCAP files to"
                         "be created", action="store", dest="write_file")
     parser.add_argument('-r ', '--read ', help="Give the absolute path to the"
                         "folder containing a pcap file(s). Reads the pcap file"
