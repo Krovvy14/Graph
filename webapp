@@ -1,7 +1,0 @@
-Contains the contents necessary for the web application presentation of the neo4j database.
-
-Dependenies:
-  node.js
-  sigma.js
-     *gjslint -https://developers.google.com/closure/utilities/docs/linter_howto?hl=en
-     
