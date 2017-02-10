@@ -1,5 +1,5 @@
 # Graph
-Dependencies: tshark, neo4j python driver
+Dependencies: tshark, sigma.js (follow install guidelines)
 
 This project can be run in two modes: read or write
 
