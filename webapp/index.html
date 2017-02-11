@@ -65,36 +65,41 @@
 	</div>
 
 	<script type="application/javascript">
-			/**
-			 * Here is just a basic example on how to properly display a neo4j cypher query.
-			 *
-			 * The plugin sigma.neo4j.cypher can load a cypher query, parse the JSON response,
-			 * and instantiate sigma when the response is received.
-			 *
-			 * It based on the json parser (that's why its must be loaded).
-			 */
-			sigma.neo4j.cypher(
-					{ url: 'http://localhost:7474', user: 'neo4j', password: 'password1!' },
-					'MATCH (n) OPTIONAL MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 100',
-					{ container: 'graph-container' } ,
-					function(s) {
-						console.log('Number of nodes :'+ s.graph.nodes().length);
-						console.log('Number of edges :'+ s.graph.edges().length);
-					}
-			);
-			// Calling neo4j to get all its relationship type
+		function initGraph(){
+			var endpoint = {
+				url: 'http://127.0.0.1:7474',
+				user: 'neo4j',
+				password: 'password1!'
+			},
+			s = new sigma('graph-container');
+
+			var dragListener = sigma.plugins.dragNodes(s, s.renderer[0]);
+
+			var Labels = {};
+
 			sigma.neo4j.getTypes(
-					{ url: 'http://localhost:7474', user:'neo4j', password:'password1!' },
-					function(types) {
-						console.log("Relationship types" + types);
-					}
+				endpoint,
+				function(types){
+					console.log('Relationship types %s', types.join(', '));
+				}
 			);
-			// Calling neo4j to get all its node label
+			
+			sigma.neo4j.cypher(
+				endpoint,
+				'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 100',
+				s,
+				function(s){
+					console.log('# of nodes:'+ s.graph.nodes().length);
+					console.log('# of edges:'+ s.graph.edges().lenght);
+				}
+			)
+	
 			sigma.neo4j.getLabels(
-					{ url: 'http://localhost:7474', user:'neo4j', password:'password1!' },
-					function(labels) {
-						console.log("Node labels" + labels);
-					}
+				endpoint,
+				function(labels){
+					console.log('Node labels %s', labels.join(', '))
+				}
 			);
-</script>
+		};
+	</script>
 </html>
