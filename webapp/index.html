@@ -56,50 +56,42 @@
 	<!-- END SIGMA IMPORTS -->
 	<script src="sigma.js/plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
 	<script src="sigma.js/plugins/sigma.neo4j.cypher/sigma.neo4j.cypher.js"></script>
+    <script src="sigma.js/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js"></script>
 
 	<div id=intro>
     	<h1>Network Traffic Visualiztion</h1>
 	</div>
-    <div id="container">
-      <div id="graph-container"></div>
-	</div>
+    <div id="container" style="height: 600px; width: 100%"></div>
 
 	<script type="application/javascript">
-		function initGraph(){
 			var endpoint = {
-				url: 'http://127.0.0.1:7474',
+				url: 'http://localhost:7474',
 				user: 'neo4j',
 				password: 'password1!'
 			},
-			s = new sigma('graph-container');
+            graph = {nodes: [], edges: []};
+			s = new sigma({graph: graph, container: 'container'});
 
-			var dragListener = sigma.plugins.dragNodes(s, s.renderer[0]);
+			var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
 
-			var Labels = {};
+            s.bind('overNode clickNode', function(e){
+                console.log(e.data.node.label);
+            });
 
-			sigma.neo4j.getTypes(
-				endpoint,
-				function(types){
-					console.log('Relationship types %s', types.join(', '));
-				}
-			);
-			
+            function customizeGraph(s){
+                s.graph.nodes().forEach(function(n){
+                    n.label=n.neo4j_data;
+                    console.log(n.label);
+                });
+                s.refresh();
+            };
+
 			sigma.neo4j.cypher(
 				endpoint,
 				'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 100',
 				s,
-				function(s){
-					console.log('# of nodes:'+ s.graph.nodes().length);
-					console.log('# of edges:'+ s.graph.edges().lenght);
-				}
-			)
-	
-			sigma.neo4j.getLabels(
-				endpoint,
-				function(labels){
-					console.log('Node labels %s', labels.join(', '))
-				}
+                customizeGraph
 			);
-		};
+		
 	</script>
 </html>
