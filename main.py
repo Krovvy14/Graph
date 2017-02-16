@@ -73,8 +73,8 @@ def main():
 			server_process = Process(target=server.server, args=(csv_dir,))
 			server_process.start()
 
-			for pcap_file in os.listdir(args.readfile):
-				infile = args.readfile + '/' + pcap_file
+			for pcap_file in os.listdir(args.read_file):
+				infile = args.read_file + '/' + pcap_file
 				pcap2csv.parser(infile)
 				ingester.create_databse(pcap_file + '.csv')
 
