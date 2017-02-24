@@ -1,105 +1,75 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
 	<title>Graph Visualization</title>
-	  <link rel="stylesheet" type="text/css" href="style.css">
+	  <link rel="stylesheet" type="text/css" href="src/css/style.css">
   </head>
 
   <body>
 	<!-- START SIGMA IMPORTS -->
-	<script src="sigma.js/src/sigma.core.js"></script>
-	<script src="sigma.js/src/conrad.js"></script>
-	<script src="sigma.js/src/utils/sigma.utils.js"></script>
-	<script src="sigma.js/src/utils/sigma.polyfills.js"></script>
-	<script src="sigma.js/src/sigma.settings.js"></script>
-	<script src="sigma.js/src/classes/sigma.classes.dispatcher.js"></script>
-	<script src="sigma.js/src/classes/sigma.classes.configurable.js"></script>
-	<script src="sigma.js/src/classes/sigma.classes.graph.js"></script>
-	<script src="sigma.js/src/classes/sigma.classes.camera.js"></script>
-	<script src="sigma.js/src/classes/sigma.classes.quad.js"></script>
-	<script src="sigma.js/src/classes/sigma.classes.edgequad.js"></script>
-	<script src="sigma.js/src/captors/sigma.captors.mouse.js"></script>
-	<script src="sigma.js/src/captors/sigma.captors.touch.js"></script>
-	<script src="sigma.js/src/renderers/sigma.renderers.canvas.js"></script>
-	<script src="sigma.js/src/renderers/sigma.renderers.webgl.js"></script>
-	<script src="sigma.js/src/renderers/sigma.renderers.svg.js"></script>
-	<script src="sigma.js/src/renderers/sigma.renderers.def.js"></script>
-	<script src="sigma.js/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
-	<script src="sigma.js/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
-	<script src="sigma.js/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
-	<script src="sigma.js/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
-	<script src="sigma.js/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
-	<script src="sigma.js/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
-	<script src="sigma.js/src/renderers/svg/sigma.svg.utils.js"></script>
-	<script src="sigma.js/src/renderers/svg/sigma.svg.nodes.def.js"></script>
-	<script src="sigma.js/src/renderers/svg/sigma.svg.edges.def.js"></script>
-	<script src="sigma.js/src/renderers/svg/sigma.svg.edges.curve.js"></script>
-	<script src="sigma.js/src/renderers/svg/sigma.svg.labels.def.js"></script>
-	<script src="sigma.js/src/renderers/svg/sigma.svg.hovers.def.js"></script>
-	<script src="sigma.js/src/middlewares/sigma.middlewares.rescale.js"></script>
-	<script src="sigma.js/src/middlewares/sigma.middlewares.copy.js"></script>
-	<script src="sigma.js/src/misc/sigma.misc.animation.js"></script>
-	<script src="sigma.js/src/misc/sigma.misc.bindEvents.js"></script>
-	<script src="sigma.js/src/misc/sigma.misc.bindDOMEvents.js"></script>
-	<script src="sigma.js/src/misc/sigma.misc.drawHovers.js"></script>
+	<script src="src/js/sigma.js/src/sigma.core.js"></script>
+	<script src="src/js/sigma.js/src/conrad.js"></script>
+	<script src="src/js/sigma.js/src/utils/sigma.utils.js"></script>
+	<script src="src/js/sigma.js/src/utils/sigma.polyfills.js"></script>
+	<script src="src/js/sigma.js/src/sigma.settings.js"></script>
+	<script src="src/js/sigma.js/src/classes/sigma.classes.dispatcher.js"></script>
+	<script src="src/js/sigma.js/src/classes/sigma.classes.configurable.js"></script>
+	<script src="src/js/sigma.js/src/classes/sigma.classes.graph.js"></script>
+	<script src="src/js/sigma.js/src/classes/sigma.classes.camera.js"></script>
+	<script src="src/js/sigma.js/src/classes/sigma.classes.quad.js"></script>
+	<script src="src/js/sigma.js/src/classes/sigma.classes.edgequad.js"></script>
+	<script src="src/js/sigma.js/src/captors/sigma.captors.mouse.js"></script>
+	<script src="src/js/sigma.js/src/captors/sigma.captors.touch.js"></script>
+	<script src="src/js/sigma.js/src/renderers/sigma.renderers.canvas.js"></script>
+	<script src="src/js/sigma.js/src/renderers/sigma.renderers.webgl.js"></script>
+	<script src="src/js/sigma.js/src/renderers/sigma.renderers.svg.js"></script>
+	<script src="src/js/sigma.js/src/renderers/sigma.renderers.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+	<script src="src/js/sigma.js/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+	<script src="src/js/sigma.js/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+	<script src="src/js/sigma.js/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/svg/sigma.svg.utils.js"></script>
+	<script src="src/js/sigma.js/src/renderers/svg/sigma.svg.nodes.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/svg/sigma.svg.edges.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/svg/sigma.svg.edges.curve.js"></script>
+	<script src="src/js/sigma.js/src/renderers/svg/sigma.svg.labels.def.js"></script>
+	<script src="src/js/sigma.js/src/renderers/svg/sigma.svg.hovers.def.js"></script>
+	<script src="src/js/sigma.js/src/middlewares/sigma.middlewares.rescale.js"></script>
+	<script src="src/js/sigma.js/src/middlewares/sigma.middlewares.copy.js"></script>
+	<script src="src/js/sigma.js/src/misc/sigma.misc.animation.js"></script>
+	<script src="src/js/sigma.js/src/misc/sigma.misc.bindEvents.js"></script>
+	<script src="src/js/sigma.js/src/misc/sigma.misc.bindDOMEvents.js"></script>
+	<script src="src/js/sigma.js/src/misc/sigma.misc.drawHovers.js"></script>
 	<!-- END SIGMA IMPORTS -->
-	<script src="sigma.js/plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
-	<script src="sigma.js/plugins/sigma.neo4j.cypher/sigma.neo4j.cypher.js"></script>
+	<script src="src/js/sigma.js/plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
+	<script src="src/js/sigma.js/plugins/sigma.neo4j.cypher/sigma.neo4j.cypher.js"></script>
+    <script src="src/js/sigma.js/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js"></script>
 
-	<div id=intro>
-    	<h1>Network Traffic Visualiztion</h1>
+	<nav class="topnav" id="top-navbar">
+		<h1>Network Traffic Visualization</h1>
+		<ul>
+			<button>Canned Query 1</button>
+			<button>Canned Query 2</button>
+			<button>Canned Query 3</button>
+			<button>Canned Query 4</button>
+		</ul>
+	</nav>
+    <div class="body" id="container">
+		<script type="application/javascript" src="main_graph.js"></script>
 	</div>
-    <div id="container">
-      <div id="graph-container"></div>
-	</div>
-
-	<script type="application/javascript">
-		function initGraph(){
-			var endpoint = {
-				url: 'http://127.0.0.1:7474',
-				user: 'neo4j',
-				password: 'password1!'
-			},
-			s = new sigma('graph-container');
-
-			var dragListener = sigma.plugins.dragNodes(s, s.renderer[0]);
-
-			var Labels = {};
-
-			sigma.neo4j.getTypes(
-				endpoint,
-				function(types){
-					console.log('Relationship types %s', types.join(', '));
-				}
-			);
-			
-			sigma.neo4j.cypher(
-				endpoint,
-				'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 100',
-				s,
-				function(s){
-					console.log('# of nodes:'+ s.graph.nodes().length);
-					console.log('# of edges:'+ s.graph.edges().lenght);
-				}
-			)
-	
-			sigma.neo4j.getLabels(
-				endpoint,
-				function(labels){
-					console.log('Node labels %s', labels.join(', '))
-				}
-			);
-		};
-	</script>
+	<div class="body" id="right-margin"></div>
 </html>
