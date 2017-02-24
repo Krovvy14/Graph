@@ -1,0 +1,27 @@
+nav{
+	border: 1px solid green;
+}
+#top-navbar h1{ 
+	text-align: center;
+}
+
+#container{
+	display: flex;
+	box-sizing: content-box;
+	float: left;
+	position: absolute;
+	border: 1px solid red;
+	width: 75%;
+	height: 100%
+}
+
+#right-margin{
+	display: flex;
+	box-sizing: content-box;
+	float: right;
+	position: absolute;
+	border: 1px solid blue;
+	right: 0px;
+	width: 25%;
+	height: 100%
+}
