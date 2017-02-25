@@ -55,15 +55,9 @@
 	<script src="src/js/sigma.js/src/misc/sigma.misc.bindDOMEvents.js"></script>
 	<script src="src/js/sigma.js/src/misc/sigma.misc.drawHovers.js"></script>
 	<!-- END SIGMA IMPORTS -->
-<<<<<<< HEAD
 	<script src="src/js/sigma.js/plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
 	<script src="src/js/sigma.js/plugins/sigma.neo4j.cypher/sigma.neo4j.cypher.js"></script>
     <script src="src/js/sigma.js/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js"></script>
-=======
-	<script src="sigma.js/plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
-	<script src="sigma.js/plugins/sigma.neo4j.cypher/sigma.neo4j.cypher.js"></script>
-    <script src="sigma.js/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js"></script>
->>>>>>> dfaceb0c935cf0eab5bc5a43d74e0d9fb3e8c250
 
 	<nav class="topnav" id="top-navbar">
 		<h1>Network Traffic Visualization</h1>
@@ -77,41 +71,7 @@
     <div class="body" id="container">
 		<script type="application/javascript" src="main_graph.js"></script>
 	</div>
-<<<<<<< HEAD
 	<div class="body" id="right-margin"></div>
-=======
-    <div id="container" style="height: 600px; width: 100%"></div>
-
-	<script type="application/javascript">
-			var endpoint = {
-				url: 'http://localhost:7474',
-				user: 'neo4j',
-				password: 'password1!'
-			},
-            graph = {nodes: [], edges: []};
-			s = new sigma({graph: graph, container: 'container'});
-
-			var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
-
-            s.bind('overNode clickNode', function(e){
-                console.log(e.data.node.label);
-            });
-
-            function customizeGraph(s){
-                s.graph.nodes().forEach(function(n){
-                    n.label=n.neo4j_data;
-                    console.log(n.label);
-                });
-                s.refresh();
-            };
-
-			sigma.neo4j.cypher(
-				endpoint,
-				'MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 100',
-				s,
-                customizeGraph
-			);
 		
 	</script>
->>>>>>> dfaceb0c935cf0eab5bc5a43d74e0d9fb3e8c250
 </html>
