@@ -4,6 +4,7 @@
     <meta charset="utf-8">
 	<title>Graph Visualization</title>
 	  <link rel="stylesheet" type="text/css" href="src/css/style.css">
+	  <script type="application/javascript" src="src/js/main_graph.js"></script>
   </head>
 
   <body>
@@ -62,16 +63,15 @@
 	<nav class="topnav" id="top-navbar">
 		<h1>Network Traffic Visualization</h1>
 		<ul>
-			<button>Canned Query 1</button>
+			<button onclick="main_graph()">Main Graph</button>
 			<button>Canned Query 2</button>
 			<button>Canned Query 3</button>
 			<button>Canned Query 4</button>
 		</ul>
 	</nav>
     <div class="body" id="container">
-		<script type="application/javascript" src="main_graph.js"></script>
 	</div>
 	<div class="body" id="right-margin"></div>
-		
-	</script>
+        <table id="results-table"></table>
+	</body>
 </html>
