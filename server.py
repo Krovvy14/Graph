@@ -7,5 +7,5 @@ def server(directory, port):
     port = port
     os.chdir(directory)
     print "Starting server in %s" % os.getcwd() 
-    subprocess.call(['python','-m','SimpleHTTPServer', _port])
+    subprocess.call(['python','-m','SimpleHTTPServer', str(port)])
 

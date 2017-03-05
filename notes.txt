@@ -1,0 +1,8 @@
+look up a pcap of psexec traffic for unique characteristics to alert on
+look for large external dns requests
+look for certificates for meterpreter
+
+
+TODO: FIX PATH OF PCAP AND CSV OUTPUT
+
+CLEAN UP CODE; HAVE AT LEAST 1 QUERY DONE AND 1 ALMOST DONE

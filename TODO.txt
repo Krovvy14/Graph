@@ -1,0 +1,1 @@
+make queris for: SMB traffic, DNS to external IPs, Metasploit detection through non-english TLS certificates.
