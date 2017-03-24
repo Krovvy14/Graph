@@ -1,5 +1,5 @@
 function main_graph(){
-	console.log("here");
+	console.log("main here");
     var endpoint = {
 			  url: 'http://localhost:7474',
 			  user: 'neo4j',
@@ -13,16 +13,9 @@ function main_graph(){
     s.bind('overNode clickNode', function(e){
 		  console.log(e.data.node.label);
     });
-
-    function customizeGraph(s){
-        s.graph.nodes().forEach(function(n){
-	        n.label=n.neo4j_data;
-		    console.log(n.label);
-		});
-	    console.log("row count from customize graph: "
-                    + s.graph.edges().length);
-
+/*
    //table creation
+    function createTable(){
 	    var table = document.createElement("TABLE");
 	    var rowCount = s.graph.nodes().length;
 	  // for (var i=0; i < s.graph.nodes().length; i++){
@@ -35,13 +28,22 @@ function main_graph(){
 			    console.log("j: " + j);
 			    cell.innerHTML = String(j);
 		    }
-		 var dvTable = document.getElementById("right-margin");
-		 dvTable.innerHTML = "";
-	     dvTable.appendChild(table);
-	     }
 
-		 var x = createTable();
-	     s.refresh();
+		 var dvTable = document.getElementById("right-margin");
+		   dvTable.innerHTML = "";
+	       dvTable.appendChild(table);
+	     }
+    };
+*/
+    function customizeGraph(s){
+        s.graph.nodes().forEach(function(n){
+	        n.label=n.neo4j_data;
+		    console.log(n.label);
+		});
+	    console.log("row count from customize graph: "
+                    + s.graph.edges().length);
+        //createTable();
+	    s.refresh();
 	};
 
     sigma.neo4j.cypher(
