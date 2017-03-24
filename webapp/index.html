@@ -4,7 +4,9 @@
     <meta charset="utf-8">
 	<title>Graph Visualization</title>
 	  <link rel="stylesheet" type="text/css" href="src/css/style.css">
-	  <script type="application/javascript" src="src/js/main_graph.js"></script>
+	  <script type="application/javascript" src="main_graph.js"></script>
+      <script type="application/javascript" src="smb.js"></script>
+      <script type="application/javascript" src="meterpreterShell.js"></script>
   </head>
 
   <body>
@@ -64,9 +66,8 @@
 		<h1>Network Traffic Visualization</h1>
 		<ul>
 			<button onclick="main_graph()">Main Graph</button>
-			<button>Canned Query 2</button>
-			<button>Canned Query 3</button>
-			<button>Canned Query 4</button>
+			<button onclick="smbTraffic()">PSExec Traffic</button>
+			<button onclick="meterpreterShell()">Meterpreter Shell</button>
 		</ul>
 	</nav>
     <div class="body" id="container">

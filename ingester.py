@@ -22,7 +22,7 @@ def create_database(infile):
 	#cypher query to create relationship between destination MAC address and destination IP address in PCAP file
 	session.run("USING PERIODIC COMMIT LOAD CSV WITH HEADERS FROM 'http://localhost:8080/" + infile + "' AS row FIELDTERMINATOR ';' WITH row WHERE row.`eth.src` IS NOT NULL AND row.`ip.src` IS NOT NULL MATCH (n:Node) MATCH (m:IP) WHERE n.eth=row.`eth.dst` AND m.ip=row.`ip.dst` MERGE (m)-[:HAS_MAC]->(n)")
 	#cypher query to draw relationship between source and destination nodes in the PCAP file
-	session.run("USING PERIODIC COMMIT LOAD CSV WITH HEADERS FROM 'http://localhost:8080/" + infile + "' AS row FIELDTERMINATOR ';' WITH row WHERE row.`eth.src` IS NOT NULL AND row.`eth.dst` IS NOT NULL MATCH (n:Node) WHERE n.eth=row.`eth.src` MATCH (m:Node) WHERE m.eth=row.`eth.dst` CREATE (n)-[:TALKS_TO {protocol: row.`_ws.col.Protocol`, info: row.`_ws.col.Info`}]->(m)")
+        session.run("USING PERIODIC COMMIT LOAD CSV WITH HEADERS FROM 'http://localhost:8080/" + infile + "' AS row FIELDTERMINATOR ';' WITH row WHERE row.`eth.src` IS NOT NULL AND row.`eth.dst` IS NOT NULL MATCH (n:Node) WHERE n.eth=row.`eth.src` MATCH (m:Node) WHERE m.eth=row.`eth.dst` CREATE (n)-[:TALKS_TO {protocol: row.`_ws.col.Protocol`, info: row.`_ws.col.Info`, data: row.`data`, length: row.`frame.len`}]->(m)")
 	
 	session.close()
 
