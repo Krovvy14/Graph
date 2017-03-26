@@ -75,19 +75,28 @@ def main():
         try:
             if not os.path.exists(CSV_DIR):
                 os.mkdir(CSV_DIR)
+            
+            if not os.path.exists(PCAP_DIR): 
+                os.mkdir(PCAP_DIR)
 
+            # initialize server processes for browsing and uploading to database
             server_process = Process(target=server.server, args=(CSV_DIR, 8080,))
-
             webapp_process = Process(target=server.server, args=(WEBAPP_DIR, 8000,))
             server_process.start()
             webapp_process.start()
             for pcap_file in os.listdir(args.read_file):
                 infile = args.read_file + '/' + pcap_file
-                print "Parsing: %s" % infile
+                outfile = pcap_file
+                print "pcap_file to cut: %s" % infile
+                subprocess.call(['editcap', '-c','10000','%s' % infile, '%s' % PCAP_DIR + '/' + pcap_file])
+            for pcap_file in os.listdir(PCAP_DIR):
+                infile = PCAP_DIR + '/' + pcap_file
+                print "infile from main: %s" % infile
                 pcap2csv.parser(infile)
-                ingester.create_database(pcap_file + '.csv')
+                ingester.create_database(pcap_file.split('.')[0] + '.csv')
 
             server_process.join()
+
         except KeyboardInterrupt:
             print "Keyboard interrupt detected"
             webapp_process.join()   
