@@ -47,7 +47,7 @@ function meterpreterShell(){
     //query to find all smb traffic on the network
     sigma.neo4j.cypher(
 			endpoint,
-			'MATCH (n:Node) -[r:TALKS_TO]-> (m:Node) WHERE r.data =~ ".*30313233343536373839414243444546*." RETURN n,r,m LIMIT 100',
+			'MATCH (n:Node) -[r:TALKS_TO]-> (m:Node) WHERE r.data CONTAINS "30313233343536373839414243444546" RETURN n,r,m LIMIT 100',
 			s,
 			customizeGraph
    );
