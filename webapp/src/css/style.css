@@ -6,6 +6,26 @@ nav{
 }
 
 #container{
+	display: flex none;
+	box-sizing: content-box;
+	float: left;
+	position: absolute;
+	border: 1px solid red;
+	width: 75%;
+	height: 100%
+}
+
+#container1{
+	display: flex;
+	box-sizing: content-box;
+	float: left;
+	position: absolute;
+	border: 1px solid red;
+	width: 75%;
+	height: 100%
+}
+
+#container2{
 	display: flex;
 	box-sizing: content-box;
 	float: left;
