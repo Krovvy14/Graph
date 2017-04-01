@@ -16,7 +16,7 @@ def parser(infile):
 
     with open(os.getcwd() + '/csv/' + file + ".csv", 'w+') as outfile:
         subprocess.call(['tshark','-r','%s' % infile,'-T','fields','-e','frame.number',\
-        '-e','eth.src','-e','ip.src','-e','eth.dst','-e','ip.dst','-e','_ws.col.Protocol',\
+        '-e','eth.src','-e','ip.src','-e','tcp.srcport','-e','eth.dst','-e','ip.dst','-e','tcp.dstport','-e','_ws.col.Protocol',\
         '-e','_ws.col.Info','-e','data','-e','frame.len','-E','header=y','-E','separator=|'], stdout=outfile)
 
     end_time = time.time()
